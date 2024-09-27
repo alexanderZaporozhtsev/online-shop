@@ -1,6 +1,7 @@
-export function createItemsView() {
+export function createItemsView(onAddToCartClick) {
   const itemsListNode = document.querySelector(".main-items-container");
   const cartListNode = document.querySelector(".side-bar-cart-items");
+  const addToCartBtn = document.querySelector(".main-item__btn-add-to-cart");
 
   return {
     itemsListNode,
@@ -14,23 +15,39 @@ export function createItemsView() {
             <div style="background-image: url('${mainItem.img}')" class="main-item__img"></div>
             <h2 class="main-item__model">${mainItem.model}</h2>
             <p class="main-item__series">${mainItem.series}</p>
-            <p class="main-item__price">${mainItem.price}</p>
-            <button class="main-item__btn-add-to-cart"></button>
+            <p class="main-item__price">$${mainItem.price}</p>
+            <button id="${mainItem.id}" class="main-item__btn-add-to-cart"></button>
           </div>
         `;
       });
 
       itemsListNode.innerHTML = mainItemsHTML;
+
+      const buttons = itemsListNode.querySelectorAll(
+        ".main-item__btn-add-to-cart"
+      );
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          onAddToCartClick(button.getAttribute("id"));
+        });
+      });
     },
 
-    renderCartItems: function (cartItems) {
+    renderCartItems: function (cartItemsImgs) {
       let cartItemsHTML = "";
 
-      cartItems.forEach((cartItem) => {
+      cartItemsImgs.forEach((cartItemImg) => {
         cartItemsHTML += `
-          <div style="background-image: url('${cartItem.img}')" class="side-bar-cart-items__item"></div>
+          <div style="background-image: url('${cartItemImg}')" class="side-bar-cart-items__item"></div>
         `;
       });
+
+      cartListNode.innerHTML = cartItemsHTML;
+    },
+
+    addToCart: function (item) {
+      cartListNode.innerHTML += `<div style="background-image: url('${item.img}')" class="side-bar-cart-items__item"></div>`;
     },
   };
 }
