@@ -5,10 +5,19 @@ import { createLocalStorage } from "../localStorage";
 
 const storage = createItemsStorage("items");
 const model = createItemsModel();
-const view = createItemsView();
+const view = createItemsView(handleClickAddToCart);
 const localStorage = createLocalStorage();
 
 storage.read().then((items) => {
   model.setItems(items);
+  model.setCart(localStorage.read());
+  console.log(model.cart);
   view.renderMainItems(model.getMainItems());
+  view.renderCartItems(model.getCartItemsImg());
 });
+
+function handleClickAddToCart(id) {
+  model.addToCart(id);
+  localStorage.create(model.getCartItems());
+  view.addToCart(model.getItemById(id));
+}
