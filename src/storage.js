@@ -30,7 +30,6 @@ export function createItemsStorage(key) {
     db,
     read: async function () {
       const ref = collection(this.db, this.key);
-      const q = query(ref, orderBy("createdAt", "desc"));
       const querySnapshot = await getDocs(ref);
 
       const items = [];
@@ -41,10 +40,10 @@ export function createItemsStorage(key) {
           series: doc.data().series,
           price: doc.data().price,
           img: doc.data().imageURL,
+          id: doc.data().id,
         });
       });
 
-      console.log(items);
       return items;
     },
   };
