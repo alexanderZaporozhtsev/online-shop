@@ -61,7 +61,6 @@ body {
   width: 191px;
   height: 232px;
 
-  background-image: url("https://appleshops.ru/image/cache/catalog/Apple/%20Apple%20Watch%20Ultra%202/Ocean%20Band/Apple-Watch-Ultra-2-White-Blue-1-1-500x500.jpg");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -121,6 +120,10 @@ body {
 
 .side-bar-cart-items__item {
   background-color: #ffffff;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
   border-radius: 12px;
 
   height: 80px;
@@ -138,4 +141,20 @@ body {
   margin: 15px 0 15px 0;
   display: flex;
   justify-content: center;
+}
+
+.side-bar-orders {
+  margin-top: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.side-bar-orders__header {
+  font-size: 30px;
+}
+
+a {
+  margin-top: 15px;
+  font-size: 20px;
 }
