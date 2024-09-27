@@ -1,18 +1,25 @@
 export function createLocalStorage() {
   return {
-    create: function (id) {
-      localStorage.setItem(id, id);
+    create: function (cartItems) {
+      cartItems.forEach((cartItem) => {
+        cartItemId = JSON.stringify(cartItem.id);
+        cartItem = JSON.stringify(cartItem);
+        localStorage.setItem(cartItemId, cartItem);
+      });
     },
 
     read: function () {
-      cartItems = { ...localStorage };
+      const cartItems = [];
 
-      console.log(cartItems);
+      for (let key in localStorage) {
+        if (!localStorage.hasOwnProperty(key)) {
+          continue;
+        }
+
+        cartItems.push(JSON.parse(localStorage.getItem(key)));
+      }
+
       return cartItems;
-    },
-
-    delete: function (id) {
-      localStorage.removeItem(id);
     },
   };
 }
