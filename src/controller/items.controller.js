@@ -8,10 +8,11 @@ const model = createItemsModel();
 const view = createItemsView(handleClickAddToCart);
 const localStorage = createLocalStorage();
 
+localStorage.userInit();
+
 storage.read().then((items) => {
   model.setItems(items);
   model.setCart(localStorage.read());
-  console.log(model.cart);
   view.renderMainItems(model.getMainItems());
   view.renderCartItems(model.getCartItemsImg());
 });
