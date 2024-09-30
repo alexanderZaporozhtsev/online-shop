@@ -1,13 +1,7 @@
-const id = "uid22ds1";
-let amount = 1;
-localStorage.setItem(id, 1);
+const params = new URLSearchParams(location.search);
 
-let read = { ...localStorage };
+const id = params.get("id");
 
-console.log(read);
+console.log(id);
 
-let item = { uid22ds1: "1" };
-
-for (let id in item) {
-  console.log(item[id]);
-}
+fetch(``);

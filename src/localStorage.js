@@ -1,8 +1,17 @@
+import { v4 as uuidv4 } from "uuid";
+
 export function createLocalStorage() {
   return {
+    userInit: function () {
+      if (!localStorage.hasOwnProperty("userId")) {
+        userId = JSON.stringify(uuidv4());
+        localStorage.setItem("userId", userId);
+      }
+    },
+
     create: function (cartItems) {
       cartItems.forEach((cartItem) => {
-        cartItemId = JSON.stringify(cartItem.id);
+        cartItemId = cartItem.id;
         cartItem = JSON.stringify(cartItem);
         localStorage.setItem(cartItemId, cartItem);
       });
@@ -16,7 +25,9 @@ export function createLocalStorage() {
           continue;
         }
 
-        cartItems.push(JSON.parse(localStorage.getItem(key)));
+        if (key != "userId") {
+          cartItems.push(JSON.parse(localStorage.getItem(key)));
+        }
       }
 
       return cartItems;
