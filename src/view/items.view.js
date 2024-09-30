@@ -47,7 +47,18 @@ export function createItemsView(onAddToCartClick) {
     },
 
     addToCart: function (item) {
-      cartListNode.innerHTML += `<div style="background-image: url('${item.img}')" class="side-bar-cart-items__item"></div>`;
+      const divs = cartListNode.querySelectorAll("div");
+      let isExist = false;
+
+      divs.forEach((div) => {
+        if (div.style.backgroundImage === `url("${item.img}")`) {
+          isExist = true;
+        }
+      });
+
+      if (!isExist) {
+        cartListNode.innerHTML += `<div id="${item.id}" style="background-image: url('${item.img}')" class="side-bar-cart-items__item"></div>`;
+      }
     },
   };
 }
