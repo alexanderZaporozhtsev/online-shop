@@ -9,6 +9,11 @@ export function createLocalStorage() {
       }
     },
 
+    getUserId: function () {
+      const id = localStorage.getItem("userId");
+      return JSON.parse(id);
+    },
+
     create: function (cartItems) {
       cartItems.forEach((cartItem) => {
         cartItemId = cartItem.id;
