@@ -10,7 +10,7 @@ export function createViewItems(onAddToCartClick) {
       mainItems.forEach((mainItem) => {
         mainItemsHTML += `
           <div class="main-item">
-            <div style="background-image: url('${mainItem.img}')" class="main-item__img"></div>
+            <div onclick="location.href = 'item.html?id=${mainItem.id}'" style="background-image: url('${mainItem.img}')" class="main-item__img"></div>
             <h2 class="main-item__model">${mainItem.model}</h2>
             <p class="main-item__series">${mainItem.series}</p>
             <p class="main-item__price">$${mainItem.price}</p>
