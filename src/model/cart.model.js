@@ -36,15 +36,5 @@ export function createModelCart() {
 
       console.log(this.cart);
     },
-
-    getItemById: function (id) {
-      let itemById = {};
-
-      this.items.forEach((item) => {
-        if (item.id === parseInt(id)) itemById = item;
-      });
-
-      return itemById;
-    },
   };
 }
