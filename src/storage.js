@@ -24,7 +24,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export function createItemsStorage(key) {
+export function createStorage(key) {
   return {
     key,
     db,
@@ -41,6 +41,8 @@ export function createItemsStorage(key) {
           price: doc.data().price,
           img: doc.data().imageURL,
           id: doc.data().id,
+          description: doc.data().description,
+          descriptionShort: doc.data().descriptionShort,
         });
       });
 
