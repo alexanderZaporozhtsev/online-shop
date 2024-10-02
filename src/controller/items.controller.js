@@ -1,4 +1,4 @@
-import { createItemsStorage } from "../storage";
+import { createStorage } from "../storage";
 import { createModelItems } from "../model/items.model";
 import { createViewItems } from "../view/items.view";
 import { createLocalStorage } from "../localStorage";
@@ -6,13 +6,13 @@ import { createViewCart } from "../view/cart-preview.view";
 import { createModelCart } from "../model/cart.model";
 import { createModelUser } from "../model/user.model";
 
-const storage = createItemsStorage("items");
+const storage = createStorage("items");
 const localStorage = createLocalStorage();
 
 const modelItems = createModelItems();
 const modelCart = createModelCart();
 
-const viewItems = createViewItems(handleClickAddToCart);
+const viewItems = createViewItems(handleClickAddToCartItems);
 const viewCartPreview = createViewCart();
 
 const modelUser = createModelUser();
@@ -22,17 +22,17 @@ modelUser.setUser(localStorage.getUserId());
 
 storage.read().then((items) => {
   modelItems.setItems(items);
+
   modelCart.setCart(localStorage.read());
+
   viewItems.render(modelItems.getItems());
   viewCartPreview.renderCartItems(
     modelCart.getCartItemsImg(modelItems.getItems())
   );
 });
 
-function handleClickAddToCart(id) {
+export function handleClickAddToCartItems(id) {
   modelCart.addToCart(id);
   localStorage.create(modelCart.getCartItems());
-  viewCartPreview.addToCart(modelCart.getItemById(id));
+  viewCartPreview.addToCart(modelItems.getItemById(id));
 }
-
-console.log(modelUser.user);
