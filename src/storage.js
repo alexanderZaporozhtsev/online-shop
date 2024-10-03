@@ -48,5 +48,31 @@ export function createStorage(key) {
 
       return items;
     },
+
+    readById: async function (cartItems) {
+      const ref = collection(this.db, this.key);
+      const querySnapshot = await getDocs(ref);
+
+      const items = [];
+
+      querySnapshot.forEach((doc) => {
+        cartItems.forEach((cartItem) => {
+          if (doc.data().id == cartItem.id) {
+            items.push({
+              model: doc.data().model,
+              series: doc.data().series,
+              price: doc.data().price,
+              img: doc.data().imageURL,
+              id: doc.data().id,
+              description: doc.data().description,
+              descriptionShort: doc.data().descriptionShort,
+              amount: cartItem.amount,
+            });
+          }
+        });
+      });
+
+      return items;
+    },
   };
 }

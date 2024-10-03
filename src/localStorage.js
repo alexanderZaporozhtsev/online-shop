@@ -37,5 +37,21 @@ export function createLocalStorage() {
 
       return cartItems;
     },
+
+    update: function (id, isIncrease) {
+      const itemById = JSON.parse(localStorage.getItem(id));
+
+      const incAmount = () => {
+        itemById.amount += 1;
+        localStorage.setItem(id, JSON.stringify(itemById));
+      };
+
+      const decAmount = () => {
+        itemById.amount -= 1;
+        localStorage.setItem(id, JSON.stringify(itemById));
+      };
+
+      isIncrease ? incAmount() : decAmount();
+    },
   };
 }

@@ -36,5 +36,27 @@ export function createModelCart() {
 
       console.log(this.cart);
     },
+
+    changeAmount: function (id, isIncrease) {
+      const incAmount = () => {
+        this.cart.forEach((item) => {
+          if (item.id == id) {
+            item.amount += 1;
+          }
+        });
+      };
+
+      const decAmount = () => {
+        this.cart.forEach((item) => {
+          if (item.id == id) {
+            item.amount -= 1;
+          }
+        });
+      };
+
+      isIncrease ? incAmount() : decAmount();
+
+      console.log(this.cart);
+    },
   };
 }

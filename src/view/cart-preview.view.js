@@ -1,4 +1,4 @@
-export function createViewCart() {
+export function createViewCartPreview() {
   const cartListNode = document.querySelector(".side-bar-cart-items");
 
   return {

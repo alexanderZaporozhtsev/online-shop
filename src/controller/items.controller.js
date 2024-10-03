@@ -2,7 +2,7 @@ import { createStorage } from "../storage";
 import { createModelItems } from "../model/items.model";
 import { createViewItems } from "../view/items.view";
 import { createLocalStorage } from "../localStorage";
-import { createViewCart } from "../view/cart-preview.view";
+import { createViewCartPreview } from "../view/cart-preview.view";
 import { createModelCart } from "../model/cart.model";
 import { createModelUser } from "../model/user.model";
 
@@ -13,7 +13,7 @@ const modelItems = createModelItems();
 const modelCart = createModelCart();
 
 const viewItems = createViewItems(handleClickAddToCartItems);
-const viewCartPreview = createViewCart();
+const viewCartPreview = createViewCartPreview();
 
 const modelUser = createModelUser();
 

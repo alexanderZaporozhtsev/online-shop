@@ -3,7 +3,7 @@ import { createLocalStorage } from "../localStorage";
 import { createModelItem } from "../model/item.model";
 import { createModelItems } from "../model/items.model";
 import { createModelCart } from "../model/cart.model";
-import { createViewCart } from "../view/cart-preview.view";
+import { createViewCartPreview } from "../view/cart-preview.view";
 import { createViewItem } from "../view/item.view";
 
 const params = new URLSearchParams(location.search);
@@ -16,7 +16,7 @@ const modelItem = createModelItem();
 const modelItems = createModelItems();
 const modelCart = createModelCart();
 
-const viewCartPreview = createViewCart();
+const viewCartPreview = createViewCartPreview();
 const viewItem = createViewItem(handleClickAddToCartItem);
 
 storage.read().then((items) => {

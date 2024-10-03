@@ -1,5 +1,6 @@
 export function createViewItems(onAddToCartClick) {
   const itemsListNode = document.querySelector(".main-items-container");
+  const cartBtn = document.querySelector(".side-bar-cart-items__btn");
 
   return {
     itemsListNode,
@@ -29,6 +30,10 @@ export function createViewItems(onAddToCartClick) {
         button.addEventListener("click", () => {
           onAddToCartClick(button.getAttribute("id"));
         });
+      });
+
+      cartBtn.addEventListener("click", () => {
+        location.href = `cart.html`;
       });
     },
   };
