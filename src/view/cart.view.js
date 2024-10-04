@@ -1,17 +1,20 @@
-export function createViewCart(onIncBtnClick, onDecBtnClick) {
+export function createViewCart(
+  onIncBtnClick,
+  onDecBtnClick,
+  onAmountChanged,
+  handleSumLoad
+) {
   const cartListNode = document.querySelector(".items-wrapper");
   const backBtn = document.querySelector(".item-back-btn");
+  const sumNode = document.querySelector(".side-bar-cart__amount");
 
   return {
-    // onIncBtnClick,
-    // onDecBtnClick,
-
     render: function (items) {
       let cartHTML = "";
 
       items.forEach((item) => {
         cartHTML += `
-          <div id="item" class="item">
+          <div id="${item.id}" class="item">
             <div class="item__img" onclick="location.href = 'item.html?id=${
               item.id
             }'" style="background-image: url('${item.img}')"></div>
@@ -36,6 +39,7 @@ export function createViewCart(onIncBtnClick, onDecBtnClick) {
       });
 
       cartListNode.innerHTML = cartHTML;
+      onAmountChanged();
 
       backBtn.addEventListener("click", () => {
         location.href = `index.html`;
@@ -47,6 +51,8 @@ export function createViewCart(onIncBtnClick, onDecBtnClick) {
         incBtn.addEventListener("click", () => {
           const id = incBtn.getAttribute("id");
           onIncBtnClick(id);
+
+          onAmountChanged();
         });
       });
 
@@ -56,6 +62,8 @@ export function createViewCart(onIncBtnClick, onDecBtnClick) {
         decBtn.addEventListener("click", () => {
           const id = decBtn.getAttribute("id");
           onDecBtnClick(id);
+
+          onAmountChanged();
         });
       });
     },
@@ -82,6 +90,20 @@ export function createViewCart(onIncBtnClick, onDecBtnClick) {
       };
 
       isIncrease ? incAmount() : decAmount();
+    },
+
+    renderSum: function (sum) {
+      sumNode.innerHTML = `Сумма $ ${sum}`;
+    },
+
+    deleteItem: function (id) {
+      const itemNode = document.querySelectorAll(".item");
+
+      itemNode.forEach((node) => {
+        if (node.getAttribute("id") == id) {
+          node.remove();
+        }
+      });
     },
   };
 }
