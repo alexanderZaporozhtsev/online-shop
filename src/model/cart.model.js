@@ -55,8 +55,24 @@ export function createModelCart() {
       };
 
       isIncrease ? incAmount() : decAmount();
+    },
 
-      console.log(this.cart);
+    getCartSum() {
+      let sum = 0;
+
+      this.cart.forEach((item) => {
+        sum += item.price * item.amount;
+      });
+
+      return sum.toFixed(2);
+    },
+
+    deleteItem(id) {
+      this.cart.forEach((item) => {
+        if (item.id == id) {
+          this.cart.splice(item, 1);
+        }
+      });
     },
   };
 }
