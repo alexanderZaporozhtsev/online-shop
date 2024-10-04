@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-export function createLocalStorage() {
+export function createLocalStorage(onItemAmount0) {
   return {
     userInit: function () {
       if (!localStorage.hasOwnProperty("userId")) {
@@ -48,7 +48,13 @@ export function createLocalStorage() {
 
       const decAmount = () => {
         itemById.amount -= 1;
-        localStorage.setItem(id, JSON.stringify(itemById));
+
+        if (itemById.amount === 0) {
+          localStorage.removeItem(id);
+          onItemAmount0(id);
+        } else {
+          localStorage.setItem(id, JSON.stringify(itemById));
+        }
       };
 
       isIncrease ? incAmount() : decAmount();
