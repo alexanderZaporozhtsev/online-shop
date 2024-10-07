@@ -9,23 +9,105 @@
     />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/checkout.css" />
+    <link rel="stylesheet" href="css/popup.css" />
     <title>eCommerce app</title>
   </head>
   <body>
     <div class="main-container">
       <div class="checkout-info-container">
         <div class="checkout-address-container">
-          <h2 class="checkout-address__header">АДРЕС ДОСТАВКИ</h2>
-          <div class="checkout-address-info-wrapper">
-            <p class="checkout-address-info__name">Иван Иванов</p>
-            <p class="checkout-address-info__address">
-              Ленинградский проспект, 27
+          <h2 class="checkout-address-info__header">АДРЕС ДОСТАВКИ</h2>
+          <div class="info-btn-wrapper">
+            <div class="checkout-address-info-container">
+              <p class="checkout-address-info__name">Иван Иванов</p>
+              <p class="checkout-address-info__address">
+                Ленинградский проспект, 27
+              </p>
+              <p class="checkout-address-info__city">Москва</p>
+              <p class="checkout-address-info__number">+7 999 999 99 99</p>
+            </div>
+            <div class="checkout-info-btn-wrapper">
+              <button class="check-out-info-edit-btn">Изменить</button>
+            </div>
+          </div>
+        </div>
+        <div class="checkout-payment-container">
+          <h2 class="checkout-payment__header">СПОСОБ ОПЛАТЫ</h2>
+          <div class="checkout-payment-method-container">
+            <p class="checkout-payment-method__type">
+              Оплата картой при получении
             </p>
-            <p class="checkout-address-info__city">Москва</p>
-            <p class="checkout-address-info__number">+7 999 999 99 99</p>
+            <button class="payment-method-change-btn">Изменить</button>
+          </div>
+        </div>
+        <div class="checkout-cart-items-container">
+          <h2 class="checkout-cart-items__header">Проверь корзину</h2>
+          <div class="cart-item-output">
+            <h2 style="font-size: 25px">Загружаем..</h2>
           </div>
         </div>
       </div>
+      <div class="checkout-pricing-container">
+        <h2 class="checkout-pricing__header">Сумма</h2>
+        <div class="items-amount-wrapper">
+          <p class="checkout-pricing-items__title">Товары:</p>
+          <p class="checkout-pricing-items__amount">...</p>
+        </div>
+        <div class="delivery-amount-wrapper">
+          <p class="checkout-pricing-delivery__title">Доставка:</p>
+          <p class="checkout-pricing-delivery__amount">$ 6.99</p>
+        </div>
+        <p class="checkout-pricing__amount">Стоимость: ...</p>
+        <button class="checkout-btn">Разместить заказ</button>
+      </div>
     </div>
+
+    <div id="popupOverlay" class="overlay-container">
+      <div class="popup-box">
+        <h2>АДРЕС ДОСТАВКИ</h2>
+        <form class="form-container">
+          <label class="form-label" for="name">Имя:</label>
+          <input
+            class="form-input"
+            type="text"
+            placeholder="Введите ваше имя"
+            id="name"
+            name="name"
+          />
+
+          <label class="form-label" for="address">Адрес:</label>
+          <input
+            class="form-input"
+            type="address"
+            placeholder="Введите ваш адрес"
+            id="address"
+            name="address"
+          />
+
+          <label class="form-label" for="city">Город:</label>
+          <input
+            class="form-input"
+            type="text"
+            placeholder="Введите ваш город"
+            id="city"
+            name="city"
+          />
+
+          <label class="form-label" for="number">Номер телефона:</label>
+          <input
+            class="form-input"
+            type="text"
+            placeholder="Введите ваш номер телефона"
+            id="number"
+            name="number"
+          />
+
+          <button class="btn-submit-address btn-submit">Submit</button>
+        </form>
+
+        <button class="btn-close-address-popup btn-close-popup">Close</button>
+      </div>
+    </div>
+    <script type="module" src="./controller/checkout.controller.js"></script>
   </body>
 </html>
