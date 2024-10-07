@@ -7,6 +7,7 @@ export function createViewCart(
   const cartListNode = document.querySelector(".items-wrapper");
   const backBtn = document.querySelector(".item-back-btn");
   const sumNode = document.querySelector(".side-bar-cart__amount");
+  const goToCheckoutBtn = document.querySelector(".side-bar-cart-items__btn");
 
   return {
     render: function (items) {
@@ -65,6 +66,10 @@ export function createViewCart(
 
           onAmountChanged();
         });
+      });
+
+      goToCheckoutBtn.addEventListener("click", () => {
+        location.href = "checkout.html";
       });
     },
 
