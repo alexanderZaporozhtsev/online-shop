@@ -7,5 +7,9 @@ export function createModelUser() {
         id: id,
       });
     },
+
+    getUser: function () {
+      return this.user;
+    },
   };
 }
