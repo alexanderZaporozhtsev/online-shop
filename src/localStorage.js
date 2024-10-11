@@ -59,5 +59,14 @@ export function createLocalStorage(onItemAmount0) {
 
       isIncrease ? incAmount() : decAmount();
     },
+
+    clearCart: function () {
+      for (let key in localStorage) {
+        if (key == "userId") {
+          continue;
+        }
+        localStorage.removeItem(key);
+      }
+    },
   };
 }
