@@ -34,10 +34,18 @@
         <div class="checkout-payment-container">
           <h2 class="checkout-payment__header">СПОСОБ ОПЛАТЫ</h2>
           <div class="checkout-payment-method-container">
-            <p class="checkout-payment-method__type">
-              Оплата картой при получении
-            </p>
-            <button class="payment-method-change-btn">Изменить</button>
+            <div class="checkbox-wrapper">
+              <p class="checkout-payment-method__type-card">
+                Оплата картой при получении
+              </p>
+              <input type="checkbox" id="card" checked />
+            </div>
+            <div class="checkbox-wrapper">
+              <p class="checkout-payment-method__type-cash">
+                Оплата наличными при получении
+              </p>
+              <input type="checkbox" id="cash" />
+            </div>
           </div>
         </div>
         <div class="checkout-cart-items-container">
