@@ -10,6 +10,7 @@ import {
   query,
   orderBy,
   updateDoc,
+  addDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -73,6 +74,23 @@ export function createStorage(key) {
       });
 
       return items;
+    },
+
+    createOrder: async function (order) {
+      try {
+        const docRef = await addDoc(collection(this.db, "orders"), {
+          addressInfo: order.addressInfo,
+          paymentMethodIsCard: order.paymentMethodIsCard,
+          items: order.items,
+          deliveryPrice: order.deliveryPrice,
+          status: order.status,
+          userId: order.userId,
+        });
+
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.log("Error adding document: ", e);
+      }
     },
   };
 }
