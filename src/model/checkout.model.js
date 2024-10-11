@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 export function createModelCheckout() {
   return {
     checkout: {
@@ -7,11 +9,16 @@ export function createModelCheckout() {
         addressCity: "",
         addressNumber: "",
       },
-      paymentMethod: true,
+      paymentMethodIsCard: true,
       items: [],
       deliveryPrice: 6.99,
       status: "new",
       userId: "",
+      orderId: "",
+    },
+
+    setOrderId: function () {
+      this.checkout.orderId = uuidv4();
     },
 
     setAddressInfo: function (newAddressInfo) {
@@ -31,6 +38,15 @@ export function createModelCheckout() {
           itemAmount: item.amount,
         });
       });
+    },
+
+    switchPaymentMethod: function () {
+      this.checkout.paymentMethodIsCard = !this.checkout.paymentMethodIsCard;
+    },
+
+    getCheckout: function () {
+      console.log(this.checkout);
+      return this.checkout;
     },
   };
 }
